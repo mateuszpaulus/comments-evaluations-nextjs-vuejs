@@ -1,5 +1,5 @@
 export interface ReviewEntityInterface {
-  id?: number;  
+  id?: number;
   email: string;
   name: string;
   description: string | null;
@@ -19,16 +19,34 @@ export interface ReviewExternalRecordPlatform {
 
 export interface ReviewExternalRecord {
   //TODO: implement this
+  id: number;
+  email: string;
+  name: string;
+  description: string;
+  rate: number;
+  rate_date: string;
+  verified: boolean;
+  platform: ReviewExternalRecordPlatform;
+  images: string[];
 }
 
 export type ExternalPaginatedType<T> = {
-  //TODO: implement this, difference between external and domain paginated type is: page --> current_page, 
-}
+  //TODO: implement this, difference between external and domain paginated type is: page --> current_page,
+  data: T[];
+  total?: number;
+  current_page?: number;
+  per_page?: number;
+};
 
 export interface PaginatedRequest {
-    page: number;
-    per_page: number;
+  page: number;
+  per_page: number;
 }
+
 export interface PaginatedType<T> {
   //TODO: implement this
+  data: T[];
+  total?: number;
+  page?: number;
+  per_page?: number;
 }
