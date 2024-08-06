@@ -1,32 +1,31 @@
-import { Field, ObjectType, Int} from '@nestjs/graphql';
+import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class ReviewDTO {
-    
-    @Field(() => Int)
-    id: number;
+  @Field(() => Int)
+  id: number;
 
-    @Field({ nullable: true})
-    email: string;
+  @Field({ nullable: true })
+  email: string;
 
-    @Field()
-    name: string;
+  @Field()
+  name: string;
 
-    @Field({ nullable: true})
-    description: string;
+  @Field({ nullable: true })
+  description: string;
 
-    @Field(() => Int)
-    rating: number;
+  @Field(() => Float)
+  rating: number;
 
-    @Field()
-    rate_date: Date;
+  @Field()
+  rate_date: Date;
 
-    @Field({nullable: true})
-    product: string;
+  @Field({ nullable: true })
+  product: string;
 
-    @Field()
-    createdAt: Date;
-    
-    @Field()
-    updatedAt: Date;
+  @Field()
+  createdAt: Date;
+
+  @Field()
+  updatedAt: Date;
 }
