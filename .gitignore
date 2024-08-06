@@ -1,6 +1,12 @@
 # dependencies
 node_modules/
 
+# generate
+dist
+
+# dotenv environment variables file
+env
+
 # IDE
 /.idea
 /.awcache
@@ -42,7 +48,6 @@ yarn-error.log
 /coverage
 /.nyc_output
 /packages/graphql
-/benchmarks/memory
 build/config\.gypi
 
 .npmrc
