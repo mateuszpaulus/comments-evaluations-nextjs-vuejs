@@ -5,7 +5,7 @@ node_modules/
 dist
 
 # dotenv environment variables file
-env
+.env
 
 # IDE
 /.idea
