@@ -50,6 +50,25 @@ export class RatingCaptainAdapter implements RatingCaptainPort {
     };
   }
 
+  async getReviewById(id: number): Promise<ReviewEntity | null> {
+    const filePath = path.join(
+      process.cwd(),
+      `src/modules/reviews/adapters/external_reviews_data_example.json`
+    );
+    const fileData = fs.readFileSync(filePath, 'utf-8');
+    const allExternalReviews: ReviewExternalRecord[] = JSON.parse(fileData);
+
+    const reviewById = allExternalReviews.find((review) => review.id === id);
+
+    if (!reviewById) {
+      return null;
+    }
+
+    const review = this.mapper.reviewByIdToDomain(reviewById);
+
+    return review;
+  }
+
   async count(): Promise<number> {
     // const response = 111; // TODO: implement this
     // return response;
