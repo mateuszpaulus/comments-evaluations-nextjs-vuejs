@@ -1,12 +1,11 @@
 <template>
-  <div class="p-6 h-full flex flex-col items-center justify-center">
+  <div class="p-6 flex flex-col items-center justify-center">
     <div class="mb-12 w-full max-w-[765px] flex justify-start mt-[85px] sm:mt-[172px]">
       <div
-          class="flex items-center border border-solid border-[#cbcbcb] rounded-[28px] h-[45px] max-w-[300px] w-full"
+          class="focus-container flex items-center border border-solid border-[#cbcbcb] rounded-[28px] h-[45px] max-w-[300px] w-full"
       >
         <input
             v-model.number="searchId"
-            :style="{ border: 'none' }"
             class="px-[29px] py-3 rounded-[28px] outline-none bg-transparent flex-grow"
             placeholder="Wprowadź id"
             type="number"
@@ -21,18 +20,23 @@
       </div>
     </div>
 
-    <div v-if="searchResult"
-         class="border border-solid px-[22px] py-[17px] rounded-[15px] shadow-custom w-full max-w-[765px]">
+    <div
+        v-if="searchResult"
+        class="border border-solid px-[22px] py-[17px] rounded-[15px] shadow-custom w-full max-w-[765px]"
+    >
       <div class="flex flex-col sm:flex-row sm:items-center mb-4">
         <div class="flex flex-col">
           <div
-              class="flex items-center justify-center border border-solid border-primary px-[29px] py-2 rounded-t-[10px]">
-            <p class="text-black text-[26px] font-normal">{{ searchResult.rating }} / 5</p>
+              class="flex items-center justify-center border border-solid border-primary px-[29px] py-2 rounded-t-[10px] max-w-[100px]"
+          >
+            <p class="text-black text-[26px] font-normal text-nowrap">{{ searchResult.rating }} / 5</p>
           </div>
           <div class="bg-primary rounded-b-[10px] py-[6px] px-[6px] flex gap-[7px] justify-center">
 
-            <img v-for="n in Math.floor(searchResult.rating)"
-                 :key="'full-' + n" alt="star-icon" src="/star.png"/>
+            <img
+                v-for="n in Math.floor(searchResult.rating)"
+                :key="'full-' + n" alt="star-icon" src="/star.png"
+            />
           </div>
         </div>
         <div class="flex flex-grow mt-6 sm:mt-0">
@@ -48,12 +52,13 @@
         {{ searchResult?.rate_date?.split('T')[0] }}
       </p>
     </div>
+    <div v-else>
+      Wyszukaj komentarz
+    </div>
   </div>
 </template>
 
-
 <script lang="ts" setup>
-
 const getReviewByIdQuery = gql`
   query GetReviewById($id: Int!) {
     getReviewById(params: { id: $id }) {
@@ -113,5 +118,8 @@ interface Review {
 </script>
 
 <style scoped>
+.focus-container:focus-within {
+  outline: 2px solid #D98F7C;
 
+}
 </style>

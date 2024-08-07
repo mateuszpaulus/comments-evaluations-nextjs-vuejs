@@ -1,6 +1,6 @@
 <template>
   <div class="p-6 flex items-center justify-center gap-8">
-    <div class="flex flex-row items-center justify-center gap-8 mt-[85px] sm:mt-[172px] flex-grow">
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-8 mt-[85px] sm:mt-[172px] flex-grow">
       <div class="flex flex-col items-center">
         <h1 class="font-normal text-[26px] text-black text-nowrap">
           Średnia ocen
@@ -10,17 +10,22 @@
           <h1 class="text-primary font-normal text-[45px]">/5</h1>
         </div>
         <div class="flex flex-row items-center">
-          <img v-for="n in 5" :key="'full-' + n"
-               alt="star-icon" height="25" src="/star-primary.png" width="25"
+          <img
+              v-for="n in 5" :key="'full-' + n"
+              alt="star-icon" class="h-[25px] w-[25px] bg-cover"
+              src="/star-primary.png"
           />
         </div>
       </div>
       <div class="max-w-[655px] flex flex-col flex-grow">
-        <div class="flex flex-col gap-[15px] flex items-center">
+        <div class="flex flex-col gap-[15px] items-center">
           <h1 class="text-[30px]">Wasze opinie </h1>
           <div class="flex gap-[1px]">
-            <img v-for="n in 5" :key="'full-' + n"
-                 alt="star-icon" height="18" src="/star-primary.png" width="18"/>
+            <img
+                v-for="n in 5" :key="'full-' + n"
+                alt="star-icon" class="h-[18px] w-[18px] bg-cover"
+                src="/star-primary.png"
+            />
             <p class="pl-5 text-[#ABA8A8] text-[12px]">
               ({{ data?.total }} opinii)
             </p>
@@ -33,9 +38,9 @@
           <li
               v-for="(review, index) in currentPageData" :key="review.id"
               :class="{'border-b border-[#C7C7C7] border-solid': index < currentPageData?.length - 1}"
-              class="flex gap-[31px] items-start px-[29px] py-5"
+              class="flex flex-col md:flex-row gap-[31px] items-start px-[29px] py-5"
           >
-            <div class="flex flex-col flex-grow max-w-[100px]">
+            <div class="flex flex-col md:max-w-[100px] w-full md:w-fit">
               <div
                   class="flex items-center justify-center border border-solid border-primary px-[29px] py-2 rounded-t-[10px]"
               >
@@ -57,10 +62,10 @@
           </li>
         </ul>
         <div v-else class="mx-auto mt-10"> Nie ma takiej strony</div>
-        <div v-if="data" class="mt-[39px] flex justify-between items-center">
+        <div v-if="data" class="mt-[39px] flex md:gap-0 gap-5 flex-col md:flex-row md:justify-between items-center">
           <button
               :disabled="page === 1 || !currentPageData?.length"
-              class=" flex items-center gap-5 px-[19px] py-2 bg-primary text-white rounded-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
+              class="flex w-full justify-center md:w-fit items-center gap-5 px-[19px] py-2 bg-primary text-white rounded-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
               @click="fetchPage(page - 1)"
           >
             <img
@@ -68,22 +73,22 @@
             />
             poprzednia strona
           </button>
-          <span class="flex font-normal text-black text-[16px]">
+          <div class="flex font-normal text-black text-[16px]">
             <input
                 v-model.number="pageInput"
-                class="w-[88px] border border-solid border-[#F3F3F3] rounded-[35px] shadow-custom pl-5 mr-[14px]"
+                class="w-[88px] border border-solid border-[#F3F3F3] rounded-[35px] shadow-custom pl-9 mr-[14px]"
                 type="number"
                 @change="handleEnter"
                 @keyup.enter="handleEnter"
             >
             z
             <p class="ml-2">
-            {{ totalPages }}
+              {{ totalPages }}
             </p>
-          </span>
+          </div>
           <button
               :disabled="page === totalPages || !currentPageData?.length"
-              class=" flex items-center gap-5 px-[19px] py-2 bg-primary text-white rounded-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
+              class="flex w-full md:w-fit justify-center items-center gap-5 px-[19px] py-2 bg-primary text-white rounded-[20px] disabled:opacity-50 disabled:cursor-not-allowed"
               @click="fetchPage(page + 1)"
           >
             nastepna strona
