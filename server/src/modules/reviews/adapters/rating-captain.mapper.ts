@@ -12,7 +12,7 @@ export class RatingCaptainMapper {
     reviews: ExternalPaginatedType<ReviewExternalRecord>
   ): PaginatedType<ReviewEntity> {
     //TODO: implement this, map external reviews to domain
-    const { data } = reviews;
+    const { data, total, current_page, per_page } = reviews;
     const domainReviews: ReviewEntity[] = data.map((externalReview) => {
       return new ReviewEntity({
         id: externalReview.id,
@@ -28,6 +28,9 @@ export class RatingCaptainMapper {
 
     return {
       data: domainReviews,
+      total,
+      page: current_page,
+      per_page,
     };
     // return [];
   }

@@ -27,7 +27,7 @@ export class RatingCaptainAdapter implements RatingCaptainPort {
 
     const filePath = path.join(
       process.cwd(),
-      `src/modules/reviews/adapters/external_reviews_data_example.json`
+      'src/modules/reviews/adapters/external_reviews_data_example.json'
     );
 
     const fileData = fs.readFileSync(filePath, 'utf-8');
@@ -41,19 +41,17 @@ export class RatingCaptainAdapter implements RatingCaptainPort {
 
     const reviews = this.mapper.reviewsToDomain({
       data: paginatedReviews,
-    });
-    return {
-      data: reviews.data,
       total,
-      page,
+      current_page: page,
       per_page,
-    };
+    });
+    return reviews;
   }
 
   async getReviewById(id: number): Promise<ReviewEntity | null> {
     const filePath = path.join(
       process.cwd(),
-      `src/modules/reviews/adapters/external_reviews_data_example.json`
+      'src/modules/reviews/adapters/external_reviews_data_example.json'
     );
     const fileData = fs.readFileSync(filePath, 'utf-8');
     const allExternalReviews: ReviewExternalRecord[] = JSON.parse(fileData);
@@ -75,7 +73,7 @@ export class RatingCaptainAdapter implements RatingCaptainPort {
 
     const filePath = path.join(
       process.cwd(),
-      `src/modules/reviews/adapters/external_reviews_data_example.json`
+      'src/modules/reviews/adapters/external_reviews_data_example.json'
     );
     const fileData = fs.readFileSync(filePath, 'utf-8');
 

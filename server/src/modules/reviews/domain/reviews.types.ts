@@ -33,9 +33,9 @@ export interface ReviewExternalRecord {
 export type ExternalPaginatedType<T> = {
   //TODO: implement this, difference between external and domain paginated type is: page --> current_page,
   data: T[];
-  total?: number;
-  current_page?: number;
-  per_page?: number;
+  total: number;
+  current_page: number;
+  per_page: number;
 };
 
 export interface PaginatedRequest {
@@ -46,7 +46,7 @@ export interface PaginatedRequest {
 export interface PaginatedType<T> {
   //TODO: implement this
   data: T[];
-  total?: number;
-  page?: number;
-  per_page?: number;
+  total: number;
+  page: number;
+  per_page: number;
 }
